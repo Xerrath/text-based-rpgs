@@ -1,0 +1,127 @@
+body{
+    max-height: 98dvh;
+    text-align: center;
+    justify-items: center;
+    background-color: rgba(226, 226, 226, 0.6);
+}
+
+.game-head-text{
+    font-size: 1.4em;
+}
+
+#game-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.game-button-container {
+    margin: 4px 10px;
+}
+
+.game-button {
+    padding: 6px;
+    border-radius: 10px;
+    border: 2px solid black;
+    transition: 0.6s ease-in-out;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+    background-color: white;
+}
+
+.game-button:hover{
+    background-color: cyan;
+}
+
+#game-area {
+    height: 60dvh;
+    width: 90dvw;
+    margin: 12px 0px 12px 0px;
+    padding: 4px;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 4px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.title-wrapper {
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    padding: 4px;
+    margin: 2px 8x;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.gameplay-visuals-wrapper{
+    margin: 4px;
+    padding: 4px;
+    height: 60%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.gameplay-options-wrapper {
+    margin: 4px;
+    padding: 4px;
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.row-options {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+    align-items: center;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 40%;
+    width: 100%;
+}
+
+.options-button-wrapper{
+    display: flex;
+    flex-direction: center;
+    min-width: 40%;
+}
+
+.game-input-wrapper{
+    display: flex;
+    flex-direction: center;
+    min-width: 80%;
+}
+
+#game-input{
+    min-width: 100%;
+    text-align: center;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    background-color: white;
+}
+
+.options-button{
+    min-width: 100%;
+    text-align: center;
+}
+
+#game-reset-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 4px 0px 10px 0px;
+}
