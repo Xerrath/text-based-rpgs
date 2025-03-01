@@ -54,6 +54,7 @@ function generateTextInputOption(textPlaceHolder){
     let rows = document.getElementsByClassName("row-options");
     let textInputWrapper = document.createElement("div");
     let textInput = document.createElement("input");
+    let submitButton = document.createElement("button");
 
     textInputWrapper.classList.add("game-input-wrapper");
     textInputWrapper.setAttribute("id", "game-input-container");
@@ -63,11 +64,16 @@ function generateTextInputOption(textPlaceHolder){
     textInput.setAttribute("id", "game-input");
     textInput.setAttribute("placeholder", textPlaceHolder);
 
+    submitButton.classList.add("submition-button");
+    submitButton.setAttribute("id", "game-submit-text-input-button");
+
     rows[0].innerHTML = "";
     rows[1].innerHTML = "";
+    submitButton.innerHTML = "Confirm";
 
     textInputWrapper.appendChild(textInput);
     rows[1].appendChild(textInputWrapper);
+    rows[1].appendChild(submitButton);
 }
 
 function gameSetUp(gameName){
