@@ -68,7 +68,7 @@ function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     rows[1].appendChild(buttonContainerD);
 }
 
-function generateTextInputOption(textPlaceHolder){
+function generateTextInputOption(textPlaceHolder, nextFRun){
     let rows = document.getElementsByClassName("row-options");
     let textInputWrapper = document.createElement("div");
     let textInput = document.createElement("input");
@@ -84,7 +84,10 @@ function generateTextInputOption(textPlaceHolder){
 
     submitButton.classList.add("submition-button");
     submitButton.setAttribute("id", "game-submit-text-input-button");
-    submitButton.setAttribute("onclick", "submitAction()");
+    // submitButton.setAttribute("onclick", "submitAction()");
+    submitButton.addEventListener('click', function() {
+        submitAction(nextFRun, "conOne", "conTwo", "conThree", "conFour", "conFive", "conSix");
+    });
 
     rows[0].innerHTML = "";
     rows[1].innerHTML = "";
@@ -95,55 +98,68 @@ function generateTextInputOption(textPlaceHolder){
     rows[1].appendChild(submitButton);
 }
 
-function submitAction(){
+function submitAction(nextRun){
     let gameInput = document.getElementById("game-input");
     let gameInputValue = gameInput.value;
     let rows = document.getElementsByClassName("row-options");
 
     if(gameInputValue === ""){
-        // console.log("Error");
-        return("Error");
+        console.log("Error");
     } else {
         // console.log(gameInputValue);
+        currentGameArray.push(gameInputValue);
+        localStorage.setItem("gameArray", JSON.stringify(currentGameArray));
+
         rows[0].innerHTML = "";
         rows[1].innerHTML = "";
-        return(gameInputValue);
+    
+        nextRun();
     }
 }
 
 function multiChoiceAction(answer, nextRun){
     currentGameArray.push(answer);
     localStorage.setItem("gameArray", JSON.stringify(currentGameArray));
+    let rows = document.getElementsByClassName("row-options");
+
     if(answer == "a"){
         // console.log(answer);
+        rows[0].innerHTML = "";
+        rows[1].innerHTML = "";
         nextRun();
     } else if(answer == "b"){
         // console.log(answer);
+        rows[0].innerHTML = "";
+        rows[1].innerHTML = "";
         nextRun();
     } else if(answer == "c"){
         // console.log(answer);
+        rows[0].innerHTML = "";
+        rows[1].innerHTML = "";
         nextRun();
     } else if(answer == "d"){
         // console.log(answer);
+        rows[0].innerHTML = "";
+        rows[1].innerHTML = "";
         nextRun();
     }
 }
 
-// function runFunctionA() {
-//     console.log("Running Function A");
-// }
+function runFunctionA() {
+    console.log("Running Function A");
+}
 
-// function runFunctionB() {
-//     console.log("Running Function B");
-// }
+function runFunctionB() {
+    console.log("Running Function B");
+}
 
-// function runFunctionC() {
-//     console.log("Running Function C");
-// }
+function runFunctionC() {
+    console.log("Running Function C");
+}
 
-// function runFunctionD() {
-//     console.log("Running Function D");
-// }
+function runFunctionD() {
+    console.log("Running Function D");
+}
 
 function clearDecisionArea(){
     let rows = document.getElementsByClassName("row-options");
@@ -225,4 +241,27 @@ function clearData(){
     localStorage.removeItem("playerName");
     localStorage.removeItem("gameArray");
     gameArea.innerHTML = "";
+}
+
+function gameFinished(){
+    let rows = document.getElementsByClassName("row-options");
+
+    let buttonContainer = document.createElement("div");
+    let gameButton = document.createElement("a");
+    buttonContainer.classList.add("game-button-container", "options-button-wrapper");
+    buttonContainer.setAttribute('id', "button-container-a");
+    gameButton.classList.add("game-button", "options-button");
+
+    gameButton.setAttribute('id', "button-option-a");
+
+    buttonContainer.addEventListener('click', function() {
+        clearGame();
+    });
+
+    gameButton.innerHTML = "End Game";
+
+    buttonContainer.appendChild(gameButton);
+    rows[0].innerHTML = "Thank you for Playing";
+    rows[1].innerHTML = "";
+    rows[1].appendChild(buttonContainer);
 }

@@ -10,5 +10,12 @@ function playGame2(){
     // currentGameArray.push("a");
     // localStorage.setItem("gameArray", JSON.stringify(currentGameArray));
     // console.log(JSON.parse(localStorage.getItem("gameArray")));
-    generateTextInputOption("Please create an adventurer name");
+
+    // Testing 2nd run
+    function testingTwoRuns (){
+        generateTextInputOption("Please create an adventurer name", gameFinished);
+    }
+
+    // running the text input function
+    generateTextInputOption("Please create an adventurer name", testingTwoRuns);
 }
