@@ -27,21 +27,7 @@ let games = [
         functionToRun: "clearData()",
         genre: "N/A",
     },
-]
-
-const gameOptions = document.getElementById("game-options");
-const gameReset = document.getElementById("game-reset-wrapper");
-
-function clearGame(){
-    gameArea.innerHTML = "";
-    localStorage.removeItem("gameArray");
-}
-
-function clearData(){
-    localStorage.removeItem("playerName");
-    localStorage.removeItem("gameArray");
-    gameArea.innerHTML = "";
-}
+];
 
 for(let i = 0; i < games.length; i++){
     if(games[i].id < 900000000000){
@@ -73,4 +59,4 @@ for(let i = 0; i < games.length; i++){
         clearContainer.appendChild(gameButton);
         gameReset.appendChild(clearContainer);
     }
-}
+};

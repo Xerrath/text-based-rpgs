@@ -1,7 +1,11 @@
 const gameArea = document.getElementById("game-area");
+const gameOptions = document.getElementById("game-options");
+const gameReset = document.getElementById("game-reset-wrapper");
 
+let countDownTimer;
+let currentGameArray;
 
-function generateMultipleChoiceOptions(a, b, c, d){
+function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     let rows = document.getElementsByClassName("row-options");
 
     let buttonContainerA = document.createElement("div");
@@ -32,6 +36,19 @@ function generateMultipleChoiceOptions(a, b, c, d){
     gameButtonB.setAttribute('id', "button-option-b");
     gameButtonC.setAttribute('id', "button-option-c");
     gameButtonD.setAttribute('id', "button-option-d");
+
+    gameButtonA.addEventListener('click', function() {
+        multiChoiceAction('a', nFA);
+    });
+    gameButtonB.addEventListener('click', function() {
+        multiChoiceAction('b', nFB);
+    });
+    gameButtonC.addEventListener('click', function() {
+        multiChoiceAction('c', nFC);
+    });
+    gameButtonD.addEventListener('click', function() {
+        multiChoiceAction('d', nFD);
+    });
 
     gameButtonA.innerHTML = a;
     gameButtonB.innerHTML = b;
@@ -94,13 +111,48 @@ function submitAction(){
     }
 }
 
+function multiChoiceAction(answer, nextRun){
+    currentGameArray.push(answer);
+    localStorage.setItem("gameArray", JSON.stringify(currentGameArray));
+    if(answer == "a"){
+        // console.log(answer);
+        nextRun();
+    } else if(answer == "b"){
+        // console.log(answer);
+        nextRun();
+    } else if(answer == "c"){
+        // console.log(answer);
+        nextRun();
+    } else if(answer == "d"){
+        // console.log(answer);
+        nextRun();
+    }
+}
 
-function multiChoiceAction(answer){
-    console.log(answer);
-    console.log(JSON.parse(localStorage.getItem("gameArray")) || []);
+// function runFunctionA() {
+//     console.log("Running Function A");
+// }
+
+// function runFunctionB() {
+//     console.log("Running Function B");
+// }
+
+// function runFunctionC() {
+//     console.log("Running Function C");
+// }
+
+// function runFunctionD() {
+//     console.log("Running Function D");
+// }
+
+function clearDecisionArea(){
+    let rows = document.getElementsByClassName("row-options");
+    rows[0].innerHTML = "";
+    rows[1].innerHTML = "";
 }
 
 function gameSetUp(gameName){
+    localStorage.removeItem("gameArray");
     let nameCheck = localStorage.getItem("playerName");
 
     while(nameCheck == "null" || nameCheck == null){
@@ -162,4 +214,15 @@ function gameSetUp(gameName){
         localStorage.removeItem("gameArray");
         gameArea.innerHTML = "";
     }
+}
+
+function clearGame(){
+    gameArea.innerHTML = "";
+    localStorage.removeItem("gameArray");
+}
+
+function clearData(){
+    localStorage.removeItem("playerName");
+    localStorage.removeItem("gameArray");
+    gameArea.innerHTML = "";
 }
