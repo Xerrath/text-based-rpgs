@@ -4,24 +4,28 @@ let games = [
         idName: "game1",
         gameTitle: "Close Adventures",
         functionToRun: "playGame1()",
+        genre: "RPG",
     },
     {
         id: 1,
         idName: "game2",
         gameTitle: "Unknownst Horrors",
         functionToRun: "playGame2()",
+        genre: "Horror",
     },
     {
         id: 999999999998,
         idName: "Clear-game-data",
         gameTitle: "End Game",
         functionToRun: "clearGame()",
+        genre: "N/A",
     },
     {
         id: 999999999999,
         idName: "Clear-all-data",
         gameTitle: "Reset",
         functionToRun: "clearData()",
+        genre: "N/A",
     },
 ]
 
@@ -30,10 +34,12 @@ const gameReset = document.getElementById("game-reset-wrapper");
 
 function clearGame(){
     gameArea.innerHTML = "";
+    localStorage.removeItem("gameArray");
 }
 
 function clearData(){
     localStorage.removeItem("playerName");
+    localStorage.removeItem("gameArray");
     gameArea.innerHTML = "";
 }
 

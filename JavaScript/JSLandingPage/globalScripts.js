@@ -1,5 +1,6 @@
 const gameArea = document.getElementById("game-area");
 
+
 function generateMultipleChoiceOptions(a, b, c, d){
     let rows = document.getElementsByClassName("row-options");
 
@@ -66,6 +67,7 @@ function generateTextInputOption(textPlaceHolder){
 
     submitButton.classList.add("submition-button");
     submitButton.setAttribute("id", "game-submit-text-input-button");
+    submitButton.setAttribute("onclick", "submitAction()");
 
     rows[0].innerHTML = "";
     rows[1].innerHTML = "";
@@ -74,6 +76,28 @@ function generateTextInputOption(textPlaceHolder){
     textInputWrapper.appendChild(textInput);
     rows[1].appendChild(textInputWrapper);
     rows[1].appendChild(submitButton);
+}
+
+function submitAction(){
+    let gameInput = document.getElementById("game-input");
+    let gameInputValue = gameInput.value;
+    let rows = document.getElementsByClassName("row-options");
+
+    if(gameInputValue === ""){
+        // console.log("Error");
+        return("Error");
+    } else {
+        // console.log(gameInputValue);
+        rows[0].innerHTML = "";
+        rows[1].innerHTML = "";
+        return(gameInputValue);
+    }
+}
+
+
+function multiChoiceAction(answer){
+    console.log(answer);
+    console.log(JSON.parse(localStorage.getItem("gameArray")) || []);
 }
 
 function gameSetUp(gameName){
@@ -90,6 +114,7 @@ function gameSetUp(gameName){
     }
 
     if(nameCheck != "0" || nameCheck != 0){
+
         // Creates divs for title of game and players name to be viewed
         let titleViewWrapper = document.createElement("div");
         let gamePlayVisuals = document.createElement("div");
@@ -134,6 +159,7 @@ function gameSetUp(gameName){
         // This is if there is an error with user not entering a name
         alert("You opted out to play please select a new game if you wish to continue");
         localStorage.removeItem("playerName");
+        localStorage.removeItem("gameArray");
         gameArea.innerHTML = "";
     }
 }
