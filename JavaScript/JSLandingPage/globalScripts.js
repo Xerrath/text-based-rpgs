@@ -7,10 +7,26 @@ let countDownTimer;
 let currentGameArray;
 
 let checkBoxTheme = document.getElementById("theme-switch");
+
+if (localStorage.getItem("theme") === null || localStorage.getItem("theme") === "null"){
+    localStorage.setItem("theme", "false");
+}
+
+if (localStorage.getItem("theme") === "true") {
+    checkBoxTheme.checked = true;
+    themeRoot.style.setProperty("--colorBG", "rgba(1, 11, 19, 1)");
+    themeRoot.style.setProperty("--colorText", "rgba(236, 235, 243, 1)");
+    themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
+    themeRoot.style.setProperty("--color04", "rgba(10, 226, 255, 1)");
+    themeRoot.style.setProperty("--color05", "rgba(3, 160, 98, 1)");
+    themeRoot.style.setProperty("--colorWhite", "rgba(236, 235, 243, 1)");
+}
     
 checkBoxTheme.addEventListener('change', function() {
-    if (checkBoxTheme.checked) {
+    if (checkBoxTheme.checked || localStorage.getItem("theme") === "false") {
         // console.log('Checkbox is checked');
+        localStorage.setItem("theme", "true");
+        console.log(localStorage.getItem("theme"));
         themeRoot.style.setProperty("--colorBG", "rgba(1, 11, 19, 1)");
         themeRoot.style.setProperty("--colorText", "rgba(236, 235, 243, 1)");
         themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
@@ -19,6 +35,8 @@ checkBoxTheme.addEventListener('change', function() {
         themeRoot.style.setProperty("--colorWhite", "rgba(236, 235, 243, 1)");
     } else {
         // console.log('Checkbox is unchecked');
+        localStorage.setItem("theme", "false");
+        console.log(localStorage.getItem("theme"));
         themeRoot.style.setProperty("--colorBG", "rgba(226, 226, 226, 0.6)");
         themeRoot.style.setProperty("--colorText", "rgba(1, 11, 19, 1)");
         themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
@@ -247,6 +265,7 @@ function clearGame(){
 function clearData(){
     localStorage.removeItem("playerName");
     localStorage.removeItem("gameArray");
+    // localStorage.removeItem("theme");
     gameArea.innerHTML = "";
 }
 
