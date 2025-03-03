@@ -2,6 +2,22 @@ function timingCountDown(s, text){
     countDownTimer = s;
 }
 
+function runFunctionA() {
+    console.log("Running Function A");
+}
+
+function runFunctionB() {
+    console.log("Running Function B");
+}
+
+function runFunctionC() {
+    console.log("Running Function C");
+}
+
+function runFunctionD() {
+    console.log("Running Function D");
+}
+
 function playGame1(){
     gameArea.innerHTML = "";
 

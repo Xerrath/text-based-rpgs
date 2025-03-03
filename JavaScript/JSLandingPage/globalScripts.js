@@ -1,9 +1,32 @@
 const gameArea = document.getElementById("game-area");
 const gameOptions = document.getElementById("game-options");
 const gameReset = document.getElementById("game-reset-wrapper");
+const themeRoot = document.documentElement;
 
 let countDownTimer;
 let currentGameArray;
+
+let checkBoxTheme = document.getElementById("theme-switch");
+    
+checkBoxTheme.addEventListener('change', function() {
+    if (checkBoxTheme.checked) {
+        // console.log('Checkbox is checked');
+        themeRoot.style.setProperty("--colorBG", "rgba(1, 11, 19, 1)");
+        themeRoot.style.setProperty("--colorText", "rgba(236, 235, 243, 1)");
+        themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
+        themeRoot.style.setProperty("--color04", "rgba(10, 226, 255, 1)");
+        themeRoot.style.setProperty("--color05", "rgba(3, 160, 98, 1)");
+        themeRoot.style.setProperty("--colorWhite", "rgba(236, 235, 243, 1)");
+    } else {
+        // console.log('Checkbox is unchecked');
+        themeRoot.style.setProperty("--colorBG", "rgba(226, 226, 226, 0.6)");
+        themeRoot.style.setProperty("--colorText", "rgba(1, 11, 19, 1)");
+        themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
+        themeRoot.style.setProperty("--color04", "rgba(3, 160, 98, 1)");
+        themeRoot.style.setProperty("--color05", "rgba(10, 226, 255, 1)");
+        themeRoot.style.setProperty("--colorWhite", "rgba(236, 235, 243, 1)");
+    }
+});
 
 function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     let rows = document.getElementsByClassName("row-options");
@@ -143,22 +166,6 @@ function multiChoiceAction(answer, nextRun){
         rows[1].innerHTML = "";
         nextRun();
     }
-}
-
-function runFunctionA() {
-    console.log("Running Function A");
-}
-
-function runFunctionB() {
-    console.log("Running Function B");
-}
-
-function runFunctionC() {
-    console.log("Running Function C");
-}
-
-function runFunctionD() {
-    console.log("Running Function D");
 }
 
 function clearDecisionArea(){
