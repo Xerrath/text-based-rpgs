@@ -14,6 +14,13 @@ let games = [
         genre: "Horror",
     },
     {
+        id: 2,
+        idName: "game3",
+        gameTitle: "Ei's Story Line",
+        functionToRun: "playGame3()",
+        genre: "Adventure",
+    },
+    {
         id: 999999999998,
         idName: "Clear-game-data",
         gameTitle: "End Game",
