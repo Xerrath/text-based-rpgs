@@ -27,12 +27,15 @@ function playGame1(){
     currentGameArray = JSON.parse(localStorage.getItem("gameArray")) || [];
 
     // Testing 2nd run
-    function testingTwoRuns (){
-       generateTextInputOption("Please create an adventurer name", gameFinished);
-    }
+    // function testingTwoRuns (){
+    //    generateTextInputOption("What Weapon Do you want?", gameFinished);
+    // }
 
     // Running The multiChoice Options
-    generateMultipleChoiceOptions("Testing Run A", testingTwoRuns, "Testing Run B", testingTwoRuns, "Testing Run C", testingTwoRuns, "Testing Run D", runFunctionD);
+    
+    //generateMultipleChoiceOptions("Testing Run A", testingTwoRuns, "Testing Run B", testingTwoRuns, "Testing Run C", testingTwoRuns, "Testing Run D", runFunctionD);
+
+    // generateNextText("This is a visual test for a next run", testingTwoRuns);
 
     // How to modify the array in local storage
     // currentGameArray.push("a");

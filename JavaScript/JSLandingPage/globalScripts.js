@@ -26,7 +26,7 @@ checkBoxTheme.addEventListener('change', function() {
     if (checkBoxTheme.checked || localStorage.getItem("theme") === "false") {
         // console.log('Checkbox is checked');
         localStorage.setItem("theme", "true");
-        console.log(localStorage.getItem("theme"));
+        // console.log(localStorage.getItem("theme"));
         themeRoot.style.setProperty("--colorBG", "rgba(1, 11, 19, 1)");
         themeRoot.style.setProperty("--colorText", "rgba(236, 235, 243, 1)");
         themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
@@ -36,7 +36,7 @@ checkBoxTheme.addEventListener('change', function() {
     } else {
         // console.log('Checkbox is unchecked');
         localStorage.setItem("theme", "false");
-        console.log(localStorage.getItem("theme"));
+        // console.log(localStorage.getItem("theme"));
         themeRoot.style.setProperty("--colorBG", "rgba(226, 226, 226, 0.6)");
         themeRoot.style.setProperty("--colorText", "rgba(1, 11, 19, 1)");
         themeRoot.style.setProperty("--color03", "rgba(1, 11, 19, 1)");
@@ -45,6 +45,31 @@ checkBoxTheme.addEventListener('change', function() {
         themeRoot.style.setProperty("--colorWhite", "rgba(236, 235, 243, 1)");
     }
 });
+
+function generateNextText(text, nextRun){
+    let elementVisuals = document.getElementById("gameplay-visuals");
+    let rows = document.getElementsByClassName("row-options");
+
+    let nextButtonContainer = document.createElement("div");
+    let nextButtonA = document.createElement("a");
+
+    nextButtonContainer.classList.add("game-button-container");
+
+    nextButtonA.classList.add("game-button", "options-button");
+
+    nextButtonA.addEventListener('click', function() {
+        nextRun();
+    });
+
+    elementVisuals.innerHTML = text;
+
+    nextButtonA.innerHTML = "Continue";
+    rows[0].innerHTML = "";
+    rows[1].innerHTML = "";
+
+    nextButtonContainer.appendChild(nextButtonA);
+    rows[1].appendChild(nextButtonContainer);
+}
 
 function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     let rows = document.getElementsByClassName("row-options");
@@ -227,6 +252,8 @@ function gameSetUp(gameName){
         gamePlayOptions.classList.add("gameplay-options-wrapper");
         gamePlayOptionsRowOne.classList.add("row-options");
         gamePlayOptionsRowTwo.classList.add("row-options");
+
+        gamePlayVisuals.setAttribute("id", "gameplay-visuals")
 
         // sets the html text
         gameVersion.innerHTML = gameName;
