@@ -12,6 +12,7 @@ body{
     text-align: center;
     justify-items: center;
     background-color: var(--colorBG);
+    transition: 0.4s ease-in-out;
 }
 
 navbar{
@@ -21,6 +22,45 @@ navbar{
     justify-content: space-between;
     padding: 4px;
     color: var(--colorText);
+}
+
+#settings-wrapper{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    color: var(--colorText);
+}
+
+#theme-wrapper{
+    width: 80px;
+    height: 40px;
+    border-style: solid;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 2px;
+    border-right: 2px;
+    border-color: var(--colorText);
+}
+
+/* #theme-button{
+    width: 80px;
+    height: 40px;
+    border-style: solid;
+    border-color: var(--colorText);
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 2px;
+    border-right: 2px;
+} */
+
+#logo{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--colorText);
+    box-shadow: 0px 0px 6px 0px var(--colorText);
 }
 
 #web-logo{
@@ -49,15 +89,6 @@ navbar{
     border: 1px solid var(--colorText);
     background-color: var(--colorBG);
     color: var(--colorText);
-}
-
-#settings-wrapper{
-    width: 20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
-    color: var(--colorText)
 }
 
 .game-head-text{

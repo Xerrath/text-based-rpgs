@@ -2,7 +2,6 @@ const gameArea = document.getElementById("game-area");
 const gameOptions = document.getElementById("game-options");
 const gameReset = document.getElementById("game-reset-wrapper");
 const themeRoot = document.documentElement;
-
 let countDownTimer;
 let currentGameArray;
 
@@ -49,7 +48,6 @@ checkBoxTheme.addEventListener('change', function() {
 function generateNextText(text, nextRun){
     let elementVisuals = document.getElementById("gameplay-visuals");
     let rows = document.getElementsByClassName("row-options");
-
     let nextButtonContainer = document.createElement("div");
     let nextButtonA = document.createElement("a");
 
@@ -73,7 +71,6 @@ function generateNextText(text, nextRun){
 
 function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     let rows = document.getElementsByClassName("row-options");
-
     let buttonContainerA = document.createElement("div");
     let buttonContainerB = document.createElement("div");
     let buttonContainerC = document.createElement("div");
