@@ -2,7 +2,7 @@
     --colorBG: rgba(226, 226, 226, 0.6);
     --colorText: rgba(1, 11, 19, 1);
     --color03: rgba(1, 11, 19, 1);
-    --color04: rgba(3, 160, 98, 1);
+    --color04: rgb(180, 40, 180);
     --color05: rgba(10, 226, 255, 1);
     --colorWhite: rgba(236, 235, 243, 1);
 }
@@ -12,7 +12,6 @@ body{
     text-align: center;
     justify-items: center;
     background-color: var(--colorBG);
-    transition: 0.4s ease-in-out;
 }
 
 navbar{
@@ -23,37 +22,6 @@ navbar{
     padding: 4px;
     color: var(--colorText);
 }
-
-#settings-wrapper{
-    width: 20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
-    color: var(--colorText);
-}
-
-#theme-wrapper{
-    width: 80px;
-    height: 40px;
-    border-style: solid;
-    border-top: 1px;
-    border-bottom: 1px;
-    border-left: 2px;
-    border-right: 2px;
-    border-color: var(--colorText);
-}
-
-/* #theme-button{
-    width: 80px;
-    height: 40px;
-    border-style: solid;
-    border-color: var(--colorText);
-    border-top: 1px;
-    border-bottom: 1px;
-    border-left: 2px;
-    border-right: 2px;
-} */
 
 #logo{
     border-radius: 50%;
@@ -89,6 +57,15 @@ navbar{
     border: 1px solid var(--colorText);
     background-color: var(--colorBG);
     color: var(--colorText);
+}
+
+#settings-wrapper{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    color: var(--colorText)
 }
 
 .game-head-text{
@@ -136,8 +113,6 @@ navbar{
 }
 
 .gameplay-visuals-wrapper{
-    margin: 4px;
-    padding: 4px;
     height: 60%;
     width: 100%;
     text-align: center;

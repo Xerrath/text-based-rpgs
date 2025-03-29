@@ -2,10 +2,14 @@ const gameArea = document.getElementById("game-area");
 const gameOptions = document.getElementById("game-options");
 const gameReset = document.getElementById("game-reset-wrapper");
 const themeRoot = document.documentElement;
+
+// theme variable
+let checkBoxTheme = document.getElementById("theme-switch");
+
+// global variables declared
 let countDownTimer;
 let currentGameArray;
-
-let checkBoxTheme = document.getElementById("theme-switch");
+let currentGameItemsArray;
 
 if (localStorage.getItem("theme") === null || localStorage.getItem("theme") === "null"){
     localStorage.setItem("theme", "false");
@@ -48,6 +52,7 @@ checkBoxTheme.addEventListener('change', function() {
 function generateNextText(text, nextRun){
     let elementVisuals = document.getElementById("gameplay-visuals");
     let rows = document.getElementsByClassName("row-options");
+
     let nextButtonContainer = document.createElement("div");
     let nextButtonA = document.createElement("a");
 
@@ -69,8 +74,9 @@ function generateNextText(text, nextRun){
     rows[1].appendChild(nextButtonContainer);
 }
 
-function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
+function generateMultipleChoiceOptions(a, valueA, nFA, b = "none", valueB = "none", nFB = "none", c = "none", valueC = "none", nFC = "none", d = "none", valueD = "none", nFD = "none"){
     let rows = document.getElementsByClassName("row-options");
+
     let buttonContainerA = document.createElement("div");
     let buttonContainerB = document.createElement("div");
     let buttonContainerC = document.createElement("div");
@@ -101,16 +107,16 @@ function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
     gameButtonD.setAttribute('id', "button-option-d");
 
     gameButtonA.addEventListener('click', function() {
-        multiChoiceAction('a', nFA);
+        multiChoiceAction("a", valueA, nFA);
     });
     gameButtonB.addEventListener('click', function() {
-        multiChoiceAction('b', nFB);
+        multiChoiceAction("b", valueB, nFB);
     });
     gameButtonC.addEventListener('click', function() {
-        multiChoiceAction('c', nFC);
+        multiChoiceAction("c", valueC, nFC);
     });
     gameButtonD.addEventListener('click', function() {
-        multiChoiceAction('d', nFD);
+        multiChoiceAction("d", valueD, nFD);
     });
 
     gameButtonA.innerHTML = a;
@@ -125,10 +131,21 @@ function generateMultipleChoiceOptions(a, nFA, b, nFB, c, nFC, d, nFD){
 
     rows[0].innerHTML = "";
     rows[1].innerHTML = "";
+
     rows[0].appendChild(buttonContainerA);
-    rows[0].appendChild(buttonContainerB);
-    rows[1].appendChild(buttonContainerC);
-    rows[1].appendChild(buttonContainerD);
+
+    if (b != "none") {
+        rows[0].appendChild(buttonContainerB);
+    }
+
+    if(c != "none" && d != "none"){
+        rows[1].appendChild(buttonContainerC);
+        rows[1].appendChild(buttonContainerD);
+    } else if (c != "none") {
+        rows[1].appendChild(buttonContainerC)
+    } else {
+        rows[1].innerHTML = "";
+    }
 }
 
 function generateTextInputOption(textPlaceHolder, nextFRun){
@@ -180,8 +197,8 @@ function submitAction(nextRun){
     }
 }
 
-function multiChoiceAction(answer, nextRun){
-    currentGameArray.push(answer);
+function multiChoiceAction(answer, valueToPush, nextRun){
+    currentGameArray.push(valueToPush);
     localStorage.setItem("gameArray", JSON.stringify(currentGameArray));
     let rows = document.getElementsByClassName("row-options");
 
@@ -216,6 +233,7 @@ function clearDecisionArea(){
 
 function gameSetUp(gameName){
     localStorage.removeItem("gameArray");
+    localStorage.removeItem("gameItemsArray");
     let nameCheck = localStorage.getItem("playerName");
 
     while(nameCheck == "null" || nameCheck == null){
@@ -277,6 +295,7 @@ function gameSetUp(gameName){
         alert("You opted out to play please select a new game if you wish to continue");
         localStorage.removeItem("playerName");
         localStorage.removeItem("gameArray");
+        localStorage.removeItem("gameItemsArray");
         gameArea.innerHTML = "";
     }
 }
@@ -284,13 +303,15 @@ function gameSetUp(gameName){
 function clearGame(){
     gameArea.innerHTML = "";
     localStorage.removeItem("gameArray");
+    localStorage.removeItem("gameItemsArray");
 }
 
 function clearData(){
+    gameArea.innerHTML = "";
     localStorage.removeItem("playerName");
     localStorage.removeItem("gameArray");
+    localStorage.removeItem("gameItemsArray");
     // localStorage.removeItem("theme");
-    gameArea.innerHTML = "";
 }
 
 function gameFinished(){

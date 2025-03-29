@@ -1,31 +1,35 @@
 let games = [
     {
         id: 0,
-        idName: "game1",
-        gameTitle: "Close Adventures",
+        idName: "The Sleepy Escape",
+        gameTitle: "The Sleepy Escape",
         functionToRun: "playGame1()",
-        genre: "RPG",
+        genre: "RPG The Sleepy Escape",
+        author: "Emily H.",
     },
-    {
-        id: 1,
-        idName: "game2",
-        gameTitle: "Unknownst Horrors",
-        functionToRun: "playGame2()",
-        genre: "Horror",
-    },
-    {
-        id: 2,
-        idName: "game3",
-        gameTitle: "Ei's Story Line",
-        functionToRun: "playGame3()",
-        genre: "Adventure",
-    },
+    // {
+    //     id: 1,
+    //     idName: "game2",
+    //     gameTitle: "Unknownst Horrors",
+    //     functionToRun: "playGame2()",
+    //     genre: "Horror",
+    //     author: "N/A",
+    // },
+    // {
+    //     id: 2,
+    //     idName: "game3",
+    //     gameTitle: "Ei's Story Line",
+    //     functionToRun: "playGame3()",
+    //     genre: "Adventure",
+    //     author: "N/A",
+    // },
     {
         id: 999999999998,
         idName: "Clear-game-data",
         gameTitle: "End Game",
         functionToRun: "clearGame()",
         genre: "N/A",
+        author: "N/A",
     },
     {
         id: 999999999999,
@@ -33,6 +37,7 @@ let games = [
         gameTitle: "Reset",
         functionToRun: "clearData()",
         genre: "N/A",
+        author: "N/A",
     },
 ];
 
