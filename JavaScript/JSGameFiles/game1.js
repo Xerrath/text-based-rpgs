@@ -15,7 +15,7 @@ function roundTwoOptionC() {
     actionChoiceRoundTwo("C2", "You look on top of the teacher's desk and find several stacks of worksheets for students, a few books the teacher is currently reading, and a picture. After rifling through the stacks of paper and opening the books, you find nothing. You take a look at the picture of a young boy and read the caption: My sweet baby boy, born in 1987. You enter this number into the lock for the locked drawer. It opens! Inside, you find a key. You pick up the key and try it on one of the doors leading to the hallway. Success!");
 }
 
-function finishC2OptionNext() {
+function roundTwoOptionCFinish() {
     generateNextText("You have made it out of the school.<br><br> Congratulations! <br> You win!", gameFinished);
 }
 
@@ -49,10 +49,10 @@ function actionChoiceRoundTwo(selection, text){
         generateNextText(text, displayChoicesRoundTwo);
     } else if (selection == "C2") {
         currentRoundChoices.push("C2");
-        generateNextText(text, displayChoicesRoundTwo);
+        generateNextText(text, roundTwoOptionCFinish);
     } else if (selection == "D2") {
         currentRoundChoices.push("D2");
-        generateNextText(text, displayChoicesRoundTwo);
+        generateNextText(text, finishD2OptionNext);
     } else {
         console.log("Error with roundTwo actionChoice function passing params lastOption: " + lastOption);
     }
@@ -78,9 +78,9 @@ function displayChoicesRoundTwo() {
         }
     } else if (doesIncludesC2orD2) {
         if (doesIncludeC2) {
-            generateNextText("You look on top of the teacher's desk and find several stacks of worksheets for students, a few books the teacher is currently reading, and a picture. After rifling through the stacks of paper and opening the books, you find nothing. You take a look at the picture of a young boy and read the caption: My sweet baby boy, born in 1987. You enter this number into the lock for the locked drawer. It opens! Inside, you find a key. You pick up the key and try it on one of the doors leading to the hallway. Success!", finishC2OptionNext);
+            generateNextText("You look on top of the teacher's desk and find several stacks of worksheets for students, a few books the teacher is currently reading, and a picture. After rifling through the stacks of paper and opening the books, you find nothing. You take a look at the picture of a young boy and read the caption: My sweet baby boy, born in 1987. You enter this number into the lock for the locked drawer. It opens! Inside, you find a key. You pick up the key and try it on one of the doors leading to the hallway. Success!", roundTwoOptionC);
         } else if (doesIncludeD2) {
-            generateNextText("You open the cabinet and find an old textbook from the 1940s titled Homemade Ammunition. You flip to a page labeled “How to Make Homemade Gunpowder.” Luckily, you have all the chemicals needed to create both gunpowder and thermite. After carefully following the instructions, you manage to make the gunpowder and apply it to the wooden door leading to the hallway. You light it using the lighter you found earlier and step back, watching as the explosion shakes the room.", finishD2OptionNext);
+            generateNextText("You open the cabinet and find an old textbook from the 1940s titled Homemade Ammunition. You flip to a page labeled “How to Make Homemade Gunpowder.” Luckily, you have all the chemicals needed to create both gunpowder and thermite. After carefully following the instructions, you manage to make the gunpowder and apply it to the wooden door leading to the hallway. You light it using the lighter you found earlier and step back, watching as the explosion shakes the room.", roundTwoOptionD);
         } else {
             console.log("Error with display choices round two and first else if statement");
         }
@@ -90,7 +90,7 @@ function displayChoicesRoundTwo() {
 }
 
 function roundTwo(){
-    console.log("Entered Round 2")
+    // console.log("Entered Round 2");
     currentGameItemsArray = JSON.parse(localStorage.getItem("gameItemsArray"));
     currentRoundChoices = [];
 
@@ -123,24 +123,24 @@ function finalroundOneOption(){
 
 function actionChoiceRoundOne(selection, text){
     if (selection == "A1"){
+        // console.log("Ran Choice A1");
         currentRoundChoices.push("A1");
         currentGameItemsArray.push("Lighter");
         localStorage.setItem("gameItemsArray", JSON.stringify(currentGameItemsArray));
-        // console.log("choices to display");
         generateNextText(text, displayChoicesRoundOne);
     } else if (selection == "B1") {
+        // console.log("Ran Choice B1");
         currentRoundChoices.push("B1");
-        // console.log("choices to display");
         generateNextText(text, displayChoicesRoundOne);
     } else if (selection == "C1") {
+        // console.log("Ran Choice C1");
         currentRoundChoices.push("C1");
         currentGameItemsArray.push("Chemicals");
         localStorage.setItem("gameItemsArray", JSON.stringify(currentGameItemsArray));
-        // console.log("choices to display");
         generateNextText(text, displayChoicesRoundOne);
     } else if (selection == "D1") {
+        // console.log("Ran Choice D1");
         currentRoundChoices.push("D1");
-        // console.log("choices to display");
         generateNextText(text, displayChoicesRoundOne);
     } else {
         console.log("Error with roundOne actionChoice function passing params lastOption: " + lastOption);
@@ -159,28 +159,40 @@ function displayChoicesRoundOne() {
     // Check for a condition to meet, and if not, call the function again
     if (noLighterButChemicals || noChemicalsButLighter || noChemicalsAndLighter) {
         if (noLighterButChemicals && notBandD) {
+            // console.log("1");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Try the doors to the hallway", "B1", roundOneOptionB, "Try to break the windows with a stool", "D1", roundOneOptionD);
         } else if (noLighterButChemicals && notB && !notD) {
+            // console.log("2");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Try the doors to the hallway", "B1", roundOneOptionB);
         } else if (noLighterButChemicals && notD && !notB) {
+            // console.log("3");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Try to break the windows with a stool", "D1", roundOneOptionD);
         } else if (noLighterButChemicals && !notBandD) {
+            // console.log("4");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA);
         } else if (noChemicalsButLighter && notBandD) {
-            generateMultipleChoiceOptions("Try the doors to the hallway", roundOneOptionB, "B1", "Go into the chemical storage room", "C1", roundOneOptionC, "Try to break the windows with a stool", "D1", roundOneOptionD);
+            // console.log("5");
+            generateMultipleChoiceOptions("Try the doors to the hallway", "B1", roundOneOptionB, "Go into the chemical storage room", "C1", roundOneOptionC, "Try to break the windows with a stool", "D1", roundOneOptionD);
         } else if (noChemicalsButLighter && notB && !notD) {
-            generateMultipleChoiceOptions("Try the doors to the hallway", roundOneOptionB, "B1", "Go into the chemical storage room", "C1", roundOneOptionC);
+            // console.log("6");
+            generateMultipleChoiceOptions("Try the doors to the hallway", "B1", roundOneOptionB, "Go into the chemical storage room", "C1", roundOneOptionC);
         } else if (noChemicalsButLighter && notD && !notB) {
+            // console.log("7");
             generateMultipleChoiceOptions("Go into the chemical storage room", "C1", roundOneOptionC, "Try to break the windows with a stool", "D1", roundOneOptionD);
         } else if (noChemicalsAndLighter && notB && !notD) {
+            // console.log("8");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Try the doors to the hallway", "B1", roundOneOptionB, "Go into the chemical storage room", "C1", roundOneOptionC);
         } else if (noChemicalsButLighter && !notBandD) {
+            // console.log("9");
             generateMultipleChoiceOptions("Go into the chemical storage room", "C1", roundOneOptionC);
         } else if (noChemicalsAndLighter && notD && !notB) {
+            // console.log("10");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Go into the chemical storage room", "C1",  roundOneOptionC, "Try to break the windows with a stool", "D1", roundOneOptionD);
         } else if (noChemicalsAndLighter && !notBandD) {
+            // console.log("11");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Go into the chemical storage room", "C1", roundOneOptionC);
         } else {
+            // console.log("12");
             generateMultipleChoiceOptions("Look in the teacher's desk", "A1", roundOneOptionA, "Try the doors to the hallway", "B1", roundOneOptionB, "Go into the chemical storage room", "C1",  roundOneOptionC,"Try to break the windows with a stool", "D1", roundOneOptionD);
         }
     } else {
@@ -197,7 +209,7 @@ function displayChoicesRoundOne() {
 }
 
 function roundOne(){
-    console.log("Entered Round 1")
+    // console.log("Entered Round 1");
     currentGameItemsArray = JSON.parse(localStorage.getItem("gameItemsArray"));
     currentRoundChoices = [];
 
